@@ -1,0 +1,21 @@
+# RKNN Model Conversion Daemon Dependencies
+
+# Web framework
+aiohttp>=3.8.0
+aiofiles>=0.8.0
+
+# RKNN toolkit
+rknn-toolkit2>=1.4.0
+
+# Data processing
+numpy>=1.21.0
+Pillow>=8.3.0
+
+# Optional: for better log display
+colorama>=0.4.4
+
+# Optional: for configuration file processing
+pyyaml>=6.0
+
+# Optional: for progress bar display
+tqdm>=4.62.0 
