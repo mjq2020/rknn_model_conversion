@@ -164,7 +164,6 @@ class RKNNConverter:
             self.rknn.load_caffe(prototxt_path, blobs=caffemodel_path)
 
         elif self.current_model_type == ModelType.PYTORCH:
-            print(">>>>>>>>>", self.rknn_config.torch_config())
             self.rknn.load_pytorch(self.model_path, **(self.rknn_config.torch_config()))
         elif self.current_model_type == ModelType.TENSORFLOW:
             # Step 1: Convert TensorFlow model to TFLite

@@ -10,8 +10,10 @@ import sys
 import argparse
 from typing import Optional
 
+import threading
+
 from utils.config import ServerConfig, ensure_directories
-from server.api_server import APIServer
+from server import APIServer, ModelServiceDiscovery
 from utils.logger import logger
 
 
@@ -107,6 +109,13 @@ async def main():
 
     # Create daemon
     daemon = RKNNConverterDaemon(config)
+    model_service_discovery = ModelServiceDiscovery(
+        service_name="model_conversion_service",
+        service_port=args.port,
+        broadcast_port=9999,
+        service_info={"version": "1.0.0"},
+    )
+    threading.Thread(target=model_service_discovery.start_listening).start()
 
     # Register signal handlers
     signal.signal(signal.SIGINT, signal_handler)
